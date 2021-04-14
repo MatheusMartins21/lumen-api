@@ -19,6 +19,9 @@ class UsuarioController extends Controller
     public function __construct(JWTAuth $jwt)
     {
         $this->jwt = $jwt;
+        $this->middleware('auth:api', [
+            'except' => ['usuarioLogin', 'cadastrarUsuario']
+        ]);
     }
 
     public function usuarioLogin(Request $request) {
@@ -82,6 +85,20 @@ class UsuarioController extends Controller
         $usuario->delete();
 
         return response()->json('Deletado com Sucesso', 200);
+    }
+
+    public function mostrarUsuarioAutenticado()
+    {
+        $usuario = Auth::user();
+
+        return  response()->json($usuario);
+    }
+
+    public function usuarioLogout()
+    {
+        Auth::logout();
+
+        return response()->json('Usuário deslogou com sucesso!');
     }
 
     //

@@ -32,3 +32,7 @@ $router->group(['prefix' => 'usuario'], function () use ($router) {
 });
 
 $router->post('/login', 'UsuarioController@usuarioLogin');
+
+$router->post('/info', 'UsuarioController@mostrarUsuarioAutenticado');
+
+$router->post('/logout', 'UsuarioController@usuarioLogout');
