@@ -17,7 +17,7 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/usuarios', 'UsuarioController@mostrarTodosUsuarios');
+$router->post('/usuarios', 'UsuarioController@mostrarTodosUsuarios');
 
 $router->group(['prefix' => 'usuario'], function () use ($router) {
 
